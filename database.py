@@ -9,11 +9,9 @@ from settings import LOG_LEVEL, LOG_DATE_FORMAT, LOG_FORMAT, DB_TABLE_NAME, DB_F
 log = logging.getLogger(__name__)
 logging.basicConfig(stream=sys.stdout, level=LOG_LEVEL, format=LOG_FORMAT, datefmt=LOG_DATE_FORMAT)
 
-
 def load_all(all_ads):
     with DBConnectionHandler() as db:
         db.insert_multiple_ads(all_ads)
-
 
 def update(list_of_updated_ads):
     start = datetime.now()
@@ -36,7 +34,6 @@ def update(list_of_updated_ads):
 
     log.info(
         f"{len(list_of_updated_ads)} ads processed. New: {new}, updated: {updated}, deleted: {deleted}. Time: {datetime.now() - start}")
-
 
 class DBConnectionHandler:
     """
